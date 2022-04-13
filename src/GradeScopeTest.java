@@ -152,15 +152,15 @@ public class GradeScopeTest {
 				Bean[] beans = createBeans(logicSlotCounts[i], beanCount, true);
 				logics[i].reset(beans);
 
-				int remainingObserved = logics[i].getRemainingBeanCount();
-				int inFlightObserved = getInFlightBeanCount(logics[i], logicSlotCounts[i]);
-				int inSlotsObserved = getInSlotsBeanCount(logics[i], logicSlotCounts[i]);
-				int remainingExpected = (beanCount > 0) ? beanCount - 1 : 0;
-				int inFlightExpected = (beanCount > 0) ? 1 : 0;
-				int inSlotsExpected = 0;
-
 				while(logics[i].advanceStep())
 				{
+					int remainingObserved = logics[i].getRemainingBeanCount();
+					int inFlightObserved = getInFlightBeanCount(logics[i], logicSlotCounts[i]);
+					int inSlotsObserved = getInSlotsBeanCount(logics[i], logicSlotCounts[i]);
+					int remainingExpected = (beanCount > 0) ? beanCount - 1 : 0;
+					int inFlightExpected = (beanCount > 0) ? 1 : 0;
+					int inSlotsExpected = 0;
+					
 					assertEquals(failString + ". Check on remaining bean count",
 							remainingExpected, remainingObserved);
 					assertEquals(failString + ". Check on in-flight bean count",
