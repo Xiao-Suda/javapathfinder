@@ -89,7 +89,7 @@ public class BeanCounterLogicTest {
 		 * 
 		 * PLEASE REMOVE when you are done implementing.
 		 */
-		System.out.println(failString);
+		//System.out.println(failString);
 	}
 
 	/**
