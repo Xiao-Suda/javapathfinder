@@ -145,7 +145,33 @@ public class GradeScopeTest {
 	 */
 	@Test
 	public void testAdvanceStepLuckMode() {
-		// TODO: Implement
+		for (int i = 0; i < logics.length; i++) {
+			for (int beanCount : beanCounts) 
+			{
+				String failString = getFailString(i, beanCount);
+				Bean[] beans = createBeans(logicSlotCounts[i], beanCount, true);
+				logics[i].reset(beans);
+
+				int remainingObserved = logics[i].getRemainingBeanCount();
+				int inFlightObserved = getInFlightBeanCount(logics[i], logicSlotCounts[i]);
+				int inSlotsObserved = getInSlotsBeanCount(logics[i], logicSlotCounts[i]);
+				int remainingExpected = (beanCount > 0) ? beanCount - 1 : 0;
+				int inFlightExpected = (beanCount > 0) ? 1 : 0;
+				int inSlotsExpected = 0;
+
+				while(logics[i].advanceStep())
+				{
+					assertEquals(failString + ". Check on remaining bean count",
+							remainingExpected, remainingObserved);
+					assertEquals(failString + ". Check on in-flight bean count",
+							inFlightExpected, inFlightObserved);
+					assertEquals(failString + ". Check on in-slot bean count",
+							inSlotsExpected, inSlotsObserved);
+
+				}
+			}
+		}
+		
 	}
 
 	/**
@@ -163,6 +189,27 @@ public class GradeScopeTest {
 	@Test
 	public void testAdvanceStepSkillMode() {
 		// TODO: Implement
+		double r = rand.nextGaussian();
+		assertEquals(0, (int)r);
+		
+		Bean[] beans = createBeans(10, 200, false);
+		logics[1].reset(beans);
+
+		while(logics[1].advanceStep())
+		{
+			
+		}
+
+		assertEquals(200, logics[1].getSlotBeanCount(5));
+		
+		for(int i  = 0; i < 10; i++)
+		{
+			if(i != 5)
+			{
+				assertEquals(0, logics[1].getSlotBeanCount(i));
+			}
+		}
+
 	}
 
 	/**
@@ -181,6 +228,19 @@ public class GradeScopeTest {
 	@Test
 	public void testLowerHalf() {
 		// TODO: Implement
+		for (int beanCount : beanCounts) 
+		{
+			Bean[] beans = createBeans(logicSlotCounts[1], beanCount, true);
+			logics[1].reset(beans);
+
+			while(logics[1].advanceStep())
+			{
+
+			}
+			
+			int[] expectedSlotCounts;
+
+		}
 	}
 
 	/**
