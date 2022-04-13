@@ -193,10 +193,8 @@ public class GradeScopeTest {
 	@Test
 	public void testAdvanceStepSkillMode() {
 		// TODO: Implement
-		//Random r = Mockito.mock(Random.class);;
-		//Mockito.when( rand.nextGaussian()).thenReturn(0);
-		assertEquals(0, (int)rand.nextGaussian());
-		//rand.nextGaussian();
+		rand = Mockito.mock(Random.class);;
+		Mockito.when( rand.nextGaussian() ).thenReturn(0.0);
 		
 		Bean[] beans = createBeans(logicSlotCounts[1], 200, false);
 		logics[1].reset(beans);
@@ -239,21 +237,19 @@ public class GradeScopeTest {
 			Bean[] beans = createBeans(logicSlotCounts[1], beanCount, true);
 			logics[1].reset(beans);
 
-			while(logics[1].advanceStep())
-			{
-
-			}
+			while(logics[1].advanceStep()){}
 			
 			int[] expectedSlotCounts = new int[5];
 
 			for(int i = 0; i < 5; i++)
 			{
+				int num=0;
 				expectedSlotCounts[i] = logics[1].getSlotBeanCount(i);
 			}
 
 			logics[1].lowerHalf();
 
-			int[] observedSlotCounts = new int[15];
+			int[] observedSlotCounts = new int[5];
 
 			for(int i = 0; i < 5; i++)
 			{
@@ -402,19 +398,20 @@ public class GradeScopeTest {
 
 		for(int i = 0; i < 10; i++)
 		{
-			expectedAverage += logics[1].getSlotBeanCount(i);
+			expectedAverage += logics[1].getSlotBeanCount(i) * i;
 		}
-		expectedAverage = expectedAverage / 10;
+		expectedAverage = expectedAverage / 200;
 
 		double observedAverage = logics[1].getAverageSlotBeanCount();
 
 		double idealAverage = 4.5;
 
 		double compared = Math.abs(expectedAverage - observedAverage);
-		assertTrue(compared < 0.01);
+
+		assertTrue("1", compared < 0.01);
 
 		double check = Math.abs(idealAverage - observedAverage);
-		assertTrue(check < 0.5);
+		assertTrue("2", check < 0.5);
 
 	}
 
