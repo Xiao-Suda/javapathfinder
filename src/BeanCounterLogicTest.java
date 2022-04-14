@@ -2,6 +2,11 @@ import java.util.Random;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import gov.nasa.jpf.vm.Verify;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import java.lang.Math;
 
 /**
  * Code by @author Wonsun Ahn
@@ -38,6 +43,11 @@ public class BeanCounterLogicTest {
 			 * how to use the Verify API, look at:
 			 * https://github.com/javapathfinder/jpf-core/wiki/Verify-API-of-JPF
 			 */
+			
+			isLuck = Verify.getBoolean();
+			beanCount = Verify.getInt(0,3);
+			slotCount = Verify.getInt(0,5);
+
 		} else {
 			assert (false);
 		}
@@ -57,6 +67,9 @@ public class BeanCounterLogicTest {
 
 	@AfterClass
 	public static void tearDown() {
+
+		logic = null;
+
 	}
 
 	/**
@@ -74,6 +87,21 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testReset() {
+
+		logic.reset(beans);
+
+		if(beanCount > 0){
+
+			assertEquals(logic.getRemainingBeanCount(), beanCount-1);
+
+
+		}
+
+
+
+
+
+
 		// TODO: Implement
 		/*
 		 * Currently, it just prints out the failString to demonstrate to you all the
@@ -89,7 +117,7 @@ public class BeanCounterLogicTest {
 		 * 
 		 * PLEASE REMOVE when you are done implementing.
 		 */
-		//System.out.println(failString);
+		System.out.println(failString);
 	}
 
 	/**
