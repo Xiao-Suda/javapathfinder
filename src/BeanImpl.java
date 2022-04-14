@@ -1,4 +1,7 @@
+import static org.mockito.Mockito.spy;
+
 import java.util.Random;
+import java.lang.Math;
 
 /**
  * Code by @author Wonsun Ahn
@@ -30,6 +33,10 @@ public class BeanImpl implements Bean {
 	
 	// TODO: Add more member variables as needed
 	private int xpos;
+	private Random r;
+	private int slots;
+	private boolean luck;
+	private int skillLev;
 
 	/**
 	 * Constructor - creates a bean in either luck mode or skill mode.
@@ -40,6 +47,23 @@ public class BeanImpl implements Bean {
 	 */
 	BeanImpl(int slotCount, boolean isLuck, Random rand) {
 		// TODO: Implement
+		xpos = 0;
+		slots = slotCount;
+		luck = isLuck;
+		r = rand;
+
+		//if it's luck is true, luck mode
+		//you don't have a skill level then
+		if(luck){
+			skillLev = 0;
+		}
+		//otherwise it's skill mode
+		//skill mode requires for the bean to be given a skill level
+		else{
+			double skill_ave = (double) (slots-1) * 0.5;
+			double skill_sd = (double) Math.sqrt(slots * 0.5 * (1 - 0.5));
+			skillLev = (int) Math.round(rand.nextGaussian() * skill_sd + skill_ave);
+		}
 	}
 	
 	/**
@@ -48,8 +72,7 @@ public class BeanImpl implements Bean {
 	 * @return the current X-coordinate of the bean
 	 */
 	public int getXPos() {
-		// TODO: Implement
-		return 0;
+		return xpos;
 	}
 
 	/**
@@ -57,7 +80,7 @@ public class BeanImpl implements Bean {
 	 * to 0. 
 	 */
 	public void reset() {
-		// TODO: Implement
+		xpos = 0;
 	}
 	
 	/**
@@ -66,6 +89,32 @@ public class BeanImpl implements Bean {
 	 * right.  The X-coordinate is updated accordingly.
 	 */
 	public void choose() {
-		// TODO: Implement
+		//if you're already in a slot, don't go through the choosing processs
+		if(xpos == slots - 1){
+			return;
+		}
+
+		int direction = r.nextInt(2);
+
+		//luck
+		if(luck){
+			//when the bean goes right, add 1 to the xposition
+			if(direction == 1){
+				xpos += 1;
+			} else {
+				//do nothing
+			}
+		}
+		//skill
+		else{
+			if(skillLev > 0){
+				xpos++;
+				skillLev--;
+			}
+			else{
+				//do nothing
+			}
+		}
+
 	}
 }
