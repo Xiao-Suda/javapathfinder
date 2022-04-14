@@ -431,10 +431,30 @@ public class GradeScopeTest {
 		String[] args = new String[3];
 		args[0] = "10";
 		args[1] = "500";
-		args[2] = "luck";
+		args[2] = "skill";
 
 		BeanCounterLogicImpl.main(args);
 
+		//bytearryoutputstream grabs the main outputs
+		String output = out.toString();
+
+		//Split by system.out.printlns in main 
+		String[] twoStrings = output.split("\n");
+
+		assertEquals(2, twoStrings.length);
+
+		String[] slots = twoStrings[1].split(" ");
+
+		assertEquals(10, slots.length);
+
+		int num = 0;
+		int total = 0;
+
+		for(int i = 0; i < slots.length; i++){
+			num = Integer.parseInt(slots[i]);
+			total += num;
+		}
+		assertEquals(500, total);
 
 	}
 
