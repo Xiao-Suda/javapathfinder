@@ -26,6 +26,10 @@ public class BeanCounterLogicTest {
 	private static int beanCount; // The number of beans in the machine we want to test
 	private static boolean isLuck; // Whether the machine we want to test is in "luck" or "skill" mode
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 	private int getInFlightBeanCount(BeanCounterLogic logic, int slotCount) {
 		int inFlight = 0;
 		for (int yPos = 0; yPos < slotCount; yPos++) {
@@ -62,10 +66,10 @@ public class BeanCounterLogicTest {
 			 * how to use the Verify API, look at:
 			 * https://github.com/javapathfinder/jpf-core/wiki/Verify-API-of-JPF
 			 */
-			
+
 			isLuck = Verify.getBoolean();
 			beanCount = Verify.getInt(0,3);
-			slotCount = Verify.getInt(0,5);
+			slotCount = Verify.getInt(1,5);
 
 		} else {
 			assert (false);
@@ -107,6 +111,7 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testReset() {
 
+<<<<<<< Updated upstream
 
 		// TODO: Implement
 		/*
@@ -124,6 +129,24 @@ public class BeanCounterLogicTest {
 		 * PLEASE REMOVE when you are done implementing.
 		 */
 		
+=======
+		logic.reset(beans);
+
+		if(beanCount > 0){
+
+			assertEquals(failString, beanCount-1, logic.getRemainingBeanCount());
+			assertEquals(failString, 1, getInFlightBeanCount(logic, slotCount));
+			assertEquals(failString, 0, getInSlotsBeanCount(logic, slotCount));
+
+		}else if(beanCount == 0){
+
+			assertEquals(failString, 0, logic.getRemainingBeanCount());
+			assertEquals(failString, 0, getInFlightBeanCount(logic, slotCount));
+			assertEquals(failString, 0, getInSlotsBeanCount(logic, slotCount));
+
+		}
+
+>>>>>>> Stashed changes
 	}
 
 	/**
@@ -136,8 +159,19 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testAdvanceStepCoordinates() {
+<<<<<<< Updated upstream
 		// TODO: Implement
 		
+=======
+
+		logic.reset(beans);
+		while(logic.advanceStep()){
+
+
+
+
+		}	
+>>>>>>> Stashed changes
 	}
 
 	/**
