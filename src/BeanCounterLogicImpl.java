@@ -28,6 +28,11 @@ import java.util.Random;
 
 public class BeanCounterLogicImpl implements BeanCounterLogic {
 	// TODO: Add member methods and variables as needed
+	int slots;
+	int [] beansInSlots;
+	int beanCount;
+	int remainingBeans;
+	Bean [] allBeans;
 
 	/**
 	 * Constructor - creates the bean counter logic object that implements the core
@@ -37,6 +42,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	BeanCounterLogicImpl(int slotCount) {
 		// TODO: Implement
+		slots = slotCount;
+		beansInSlots = new int[slotCount];
 	}
 
 	/**
@@ -46,7 +53,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getSlotCount() {
 		// TODO: Implement
-		return 1;
+		return slots;
 	}
 	
 	/**
@@ -67,6 +74,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getInFlightBeanXPos(int yPos) {
 		// TODO: Implement
+	
 		return NO_BEAN_IN_YPOS;
 	}
 
@@ -78,7 +86,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getSlotBeanCount(int i) {
 		// TODO: Implement
-		return 0;
+		return beansInSlots[i];
 	}
 
 	/**
@@ -119,6 +127,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void reset(Bean[] beans) {
 		// TODO: Implement
+		allBeans = beans;
+		beanCount = beans.length;
+		//since we start at one bean at top, remaining beans is beanCount - 1
+		remainingBeans = beanCount - 1;
+		
 	}
 
 	/**
