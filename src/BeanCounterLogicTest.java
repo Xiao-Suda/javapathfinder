@@ -218,11 +218,11 @@ public class BeanCounterLogicTest {
 
 		int half = 0;
 
-		if(beanCount % 2 == 1){
-			half = (beanCount+1) / 2;
+		if(beanCount % 2 == 0){
+			half = (beanCount) / 2;
 		}
 		else{
-			half = (beanCount) / 2;
+			half = (beanCount+1) / 2;
 		}
 
 		assertEquals(0, logic.getRemainingBeanCount());
@@ -264,11 +264,11 @@ public class BeanCounterLogicTest {
 
 		int half = 0;
 
-		if(beanCount % 2 == 1){
-			half = (beanCount+1) / 2;
+		if(beanCount % 2 == 0){
+			half = (beanCount) / 2;
 		}
 		else{
-			half = (beanCount) / 2;
+			half = (beanCount+1) / 2;
 		}
 
 		assertEquals(0, logic.getRemainingBeanCount());
@@ -295,14 +295,8 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testRepeat() {
 
-		isLuck = false;
-
-		beans = new Bean[beanCount];
-		for (int i = 0; i < beanCount; i++) 
-			beans[i] = Bean.createInstance(slotCount, isLuck, new Random(42));
-		
-
-			logic.reset(beans);
+		if(!isLuck)
+		{	logic.reset(beans);
 			while(logic.advanceStep()){}
 
 			int[] firstTime = new int[slotCount];
@@ -320,7 +314,7 @@ public class BeanCounterLogicTest {
 
 			for(int i = 0; i < secondTime.length; i++)
 				assertEquals(failString, firstTime[i], secondTime[i]);
-			
+		}
 
 		
 	}
