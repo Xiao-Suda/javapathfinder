@@ -43,6 +43,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	BeanCounterLogicImpl(int slotCount) {
 		slots = slotCount;
 		beansInSlots = new int[slotCount];
+		
 	}
 
 	/**
@@ -138,7 +139,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		allBeans = beans;
 		beanCount = beans.length;
 		//since we start at one bean at top, remaining beans is beanCount - 1
-		
+
 		if(beanCount > 0)	
 			remainingBeans = beanCount - 1;
 		else
