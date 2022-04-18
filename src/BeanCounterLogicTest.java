@@ -26,10 +26,6 @@ public class BeanCounterLogicTest {
 	private static int beanCount; // The number of beans in the machine we want to test
 	private static boolean isLuck; // Whether the machine we want to test is in "luck" or "skill" mode
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 	private int getInFlightBeanCount(BeanCounterLogic logic, int slotCount) {
 		int inFlight = 0;
 		for (int yPos = 0; yPos < slotCount; yPos++) {
@@ -111,25 +107,6 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testReset() {
 
-<<<<<<< Updated upstream
-
-		// TODO: Implement
-		/*
-		 * Currently, it just prints out the failString to demonstrate to you all the
-		 * cases considered by Java Path Finder. If you called the Verify API correctly
-		 * in setUp(), you should see all combinations of machines
-		 * (slotCount/beanCount/isLucky) printed here:
-		 * 
-		 * Failure in (slotCount=1, beanCount=0, isLucky=false):
-		 * Failure in (slotCount=1, beanCount=0, isLucky=true):
-		 * Failure in (slotCount=1, beanCount=1, isLucky=false):
-		 * Failure in (slotCount=1, beanCount=1, isLucky=true):
-		 * ...
-		 * 
-		 * PLEASE REMOVE when you are done implementing.
-		 */
-		
-=======
 		logic.reset(beans);
 
 		if(beanCount > 0){
@@ -145,8 +122,6 @@ public class BeanCounterLogicTest {
 			assertEquals(failString, 0, getInSlotsBeanCount(logic, slotCount));
 
 		}
-
->>>>>>> Stashed changes
 	}
 
 	/**
@@ -159,19 +134,18 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testAdvanceStepCoordinates() {
-<<<<<<< Updated upstream
-		// TODO: Implement
-		
-=======
+
 
 		logic.reset(beans);
 		while(logic.advanceStep()){
 
-
-
-
+			for (int yPos = 0; yPos < slotCount; yPos++) {
+				int xPos = logic.getInFlightBeanXPos(yPos);
+				if (xPos != BeanCounterLogic.NO_BEAN_IN_YPOS) {
+					assertTrue(xPos < slotCount && xPos > -1 );
+				}
+			}
 		}	
->>>>>>> Stashed changes
 	}
 
 	/**
@@ -320,27 +294,34 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testRepeat() {
-		if (!isLuck) {
-			// TODO: Implement
+
+		isLuck = false;
+
+		beans = new Bean[beanCount];
+		for (int i = 0; i < beanCount; i++) 
+			beans[i] = Bean.createInstance(slotCount, isLuck, new Random(42));
+		
+
 			logic.reset(beans);
 			while(logic.advanceStep()){}
 
-			int[] firstTime = new int[10];
+			int[] firstTime = new int[slotCount];
 			for(int i = 0; i < firstTime.length; i++){
 				firstTime[i] = logic.getSlotBeanCount(i);
 			}
 
 			logic.repeat();
-			int[] secondTime = new int[10];
+			while(logic.advanceStep()){}
 
-			for(int i = 0; i < secondTime.length; i++){
+			int[] secondTime = new int[slotCount];
+			for(int i = 0; i < secondTime.length; i++)
 				secondTime[i] = logic.getSlotBeanCount(i);
-			}
+			
 
-			for(int i = 0; i < secondTime.length; i++){
-				assertEquals(firstTime[i], secondTime[i]);
-			}
+			for(int i = 0; i < secondTime.length; i++)
+				assertEquals(failString, firstTime[i], secondTime[i]);
+			
 
-		}
+		
 	}
 }
