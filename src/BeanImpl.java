@@ -32,6 +32,7 @@ import java.lang.Math;
 public class BeanImpl implements Bean {
 	
 	// TODO: Add more member variables as needed
+	private int ypos;
 	private int xpos;
 	private Random r;
 	private int slots;
@@ -47,6 +48,7 @@ public class BeanImpl implements Bean {
 	 */
 	BeanImpl(int slotCount, boolean isLuck, Random rand) {
 		// TODO: Implement
+		ypos = 0;
 		xpos = 0;
 		slots = slotCount;
 		luck = isLuck;
@@ -75,12 +77,22 @@ public class BeanImpl implements Bean {
 		return xpos;
 	}
 
+		/**
+	 * Returns the current X-coordinate position of the bean in the logical coordinate system.
+	 * 
+	 * @return the current X-coordinate of the bean
+	 */
+	public int getYPos() {
+		return ypos;
+	}
+
 	/**
 	 * Resets the bean to its initial state. The X-coordinate should be initialized
 	 * to 0. 
 	 */
 	public void reset() {
 		xpos = 0;
+		ypos = 0;
 	}
 	
 	/**
@@ -101,18 +113,20 @@ public class BeanImpl implements Bean {
 			//when the bean goes right, add 1 to the xposition
 			if(direction == 1){
 				xpos += 1;
+				ypos += 1;
 			} else {
-				//do nothing
+				ypos += 1;
 			}
 		}
 		//skill
 		else{
 			if(skillLev > 0){
 				xpos++;
+				ypos++;
 				skillLev--;
 			}
 			else{
-				//do nothing
+				ypos++;
 			}
 		}
 

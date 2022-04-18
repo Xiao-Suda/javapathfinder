@@ -41,7 +41,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @param slotCount the number of slots in the machine
 	 */
 	BeanCounterLogicImpl(int slotCount) {
-		// TODO: Implement
 		slots = slotCount;
 		beansInSlots = new int[slotCount];
 	}
@@ -52,7 +51,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of slots
 	 */
 	public int getSlotCount() {
-		// TODO: Implement
 		return slots;
 	}
 	
@@ -62,8 +60,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of beans remaining
 	 */
 	public int getRemainingBeanCount() {
-		// TODO: Implement
-		return 0;
+		return remainingBeans;
 	}
 
 	/**
@@ -73,8 +70,14 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return the x-coordinate of the in-flight bean; if no bean in y-coordinate, return NO_BEAN_IN_YPOS
 	 */
 	public int getInFlightBeanXPos(int yPos) {
-		// TODO: Implement
-	
+
+		for(int i = 0; i < allBeans.length; i++){	//search all beans
+
+			if( allBeans[i].getYPos() == yPos)	//if yPos matches, return xPos
+				return allBeans[i].getXPos();
+
+		}
+		
 		return NO_BEAN_IN_YPOS;
 	}
 
@@ -85,7 +88,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of beans in slot
 	 */
 	public int getSlotBeanCount(int i) {
-		// TODO: Implement
 		return beansInSlots[i];
 	}
 
@@ -95,8 +97,14 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return Average slot number of all the beans in slots.
 	 */
 	public double getAverageSlotBeanCount() {
-		// TODO: Implement
-		return 0;
+		
+		double avg = 0;
+		for(int i = 0; i < slots; i++){
+			avg += beansInSlots[i] * i;
+		}
+		avg = avg / beanCount;
+
+		return avg;
 	}
 
 	/**
@@ -126,12 +134,15 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @param beans array of beans to add to the machine
 	 */
 	public void reset(Bean[] beans) {
-		// TODO: Implement
+
 		allBeans = beans;
 		beanCount = beans.length;
 		//since we start at one bean at top, remaining beans is beanCount - 1
-		remainingBeans = beanCount - 1;
 		
+		if(beanCount > 0)	
+			remainingBeans = beanCount - 1;
+		else
+			remainingBeans = 0;
 	}
 
 	/**
@@ -140,7 +151,16 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * beginning, the machine starts with one bean at the top.
 	 */
 	public void repeat() {
-		// TODO: Implement
+		
+		remainingBeans = beanCount - 1;
+
+		for(int i = 0; i < slots; i++)
+			beansInSlots[i] = 0;
+
+		for(int j = 0; j < beanCount; j++)
+			allBeans[j].reset();
+			
+
 	}
 
 	/**
