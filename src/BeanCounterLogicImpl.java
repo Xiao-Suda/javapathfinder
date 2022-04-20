@@ -28,23 +28,6 @@ import java.util.Random;
  * [Slot0]       [Slot1]       [Slot2]      [Slot3]
  */
 
-/*
-class Pair {
-
-	int x;
-	int y;
-
-	public Pair(int x, int y) {
-
-		this.x = x;
-		this.y = y;
-
-	}
-
-}
-*/
-
-
 public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 	int slots;
@@ -483,7 +466,19 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	}
 
 
+	class Pair {
 
+		int x;
+		int y;
+	
+		public Pair(int x, int y) {
+	
+			this.x = x;
+			this.y = y;
+	
+		}
+	
+	}
 
 
 }
