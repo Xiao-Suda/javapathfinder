@@ -105,7 +105,7 @@ public class BeanImpl implements Bean {
 		if(luck){
 			//when the bean goes right, add 1 to the xposition
 			if(direction == 1){
-				if( xpos < slots) //make sure x index does not go out of bounds
+				if( xpos < slots-1) //make sure x index does not go out of bounds
 					xpos += 1;
 
 				ypos += 1;		
@@ -116,7 +116,7 @@ public class BeanImpl implements Bean {
 		//skill
 		else{
 			if(skillLev > 0){
-				if( xpos < slots) //make sure x index does not go out of bounds
+				if( xpos < slots-1) //make sure x index does not go out of bounds
 					xpos++;
 					
 				ypos += 1;
