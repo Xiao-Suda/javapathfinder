@@ -195,15 +195,16 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 			if(beanPositions[i] == null)
 				break;
-			else{
+			else if(beanPositions[i].y <= 0) { //if bean is not in slot
 				
 				allBeans[i].choose(); //change x coordinate
 				beanPositions[i].x = allBeans[i].getXPos(); //change x position
 				beanPositions[i].y++; //increase y position
 				
-				if(beanPositions[i].y == slots)
+				if(beanPositions[i].y == slots){
 					beansInSlots[beanPositions[i].x]++;
-
+					beanPositions[i].y = -1; //if y = -1 --> bean is in slot
+				}
 			}
 		}
 
