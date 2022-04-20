@@ -471,7 +471,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	}
 
 
-	class Pair {
+	private static class Pair {
 
 		int x;
 		int y;
