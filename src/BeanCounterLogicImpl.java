@@ -147,7 +147,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		beanCount = beans.length;
 		beanPositions = new Pair[beanCount];
 
-		beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
+		if(beanCount != 0)
+			beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
 
 		if(beanCount > 0)	//since we start at one bean at top, remaining beans is beanCount - 1
 			remainingBeans = beanCount - 1;
