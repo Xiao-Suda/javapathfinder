@@ -124,6 +124,16 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public void upperHalf() {
 		// TODO: Implement
 
+	}
+
+	/**
+	 * Removes the upper half of all beans currently in slots, keeping only the
+	 * lower half.  If there are an odd number of beans, remove (N-1)/2 beans, where
+	 * N is the number of beans. So, if there are 3 beans, 1 will be removed and 2
+	 * will be remaining.
+	 */
+	public void lowerHalf() {
+		// TODO: Implement
 		//get half the beans
 		int half = 0;
 		if(beanCount % 2 == 1){
@@ -170,16 +180,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		}
 
 		beansInSlots = beans2;
-	}
-
-	/**
-	 * Removes the upper half of all beans currently in slots, keeping only the
-	 * lower half.  If there are an odd number of beans, remove (N-1)/2 beans, where
-	 * N is the number of beans. So, if there are 3 beans, 1 will be removed and 2
-	 * will be remaining.
-	 */
-	public void lowerHalf() {
-		// TODO: Implement
 	}
 
 	/**
