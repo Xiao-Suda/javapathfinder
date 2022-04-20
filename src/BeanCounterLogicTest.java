@@ -2,9 +2,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import gov.nasa.jpf.vm.Verify;
 import java.lang.Math;
 import java.util.Random;
-import gov.nasa.jpf.vm.Verify;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -227,7 +227,7 @@ public class BeanCounterLogicTest {
 		if (beanCount % 2 == 0) {
 			half = (beanCount) / 2;
 		} else {
-			half = (beanCount+1) / 2;
+			half = (beanCount + 1) / 2;
 		}
 
 		assertEquals(0, logic.getRemainingBeanCount());
@@ -274,7 +274,7 @@ public class BeanCounterLogicTest {
 		if (beanCount % 2 == 0) {
 			half = (beanCount) / 2;
 		} else {
-			half = (beanCount+1) / 2;
+			half = (beanCount + 1) / 2;
 		}
 
 		assertEquals(0, logic.getRemainingBeanCount());
@@ -313,7 +313,7 @@ public class BeanCounterLogicTest {
 			}
 
 			logic.repeat();
-			while(logic.advanceStep()) {
+			while (logic.advanceStep()) {
 
 			}
 

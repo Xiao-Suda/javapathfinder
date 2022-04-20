@@ -109,9 +109,9 @@ public class BeanImpl implements Bean {
 			} else {
 				ypos += 1;
 			}
-		} else{
+		} else {
 			if (tempSkillLev > 0) {
-				if (xpos < slots - 1 && ypos != slots - 2){
+				if (xpos < slots - 1 && ypos != slots - 2) {
 					xpos++;
 				}
 				ypos += 1;

@@ -80,9 +80,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 			if (beanPositions[i] == null) {
 				break;
-			}
-			else {
-				if (beanPositions[i].y == yPos){
+			} else {
+				if (beanPositions[i].y == yPos) {
 					return allBeans[i].getXPos();
 				}
 			}
@@ -145,7 +144,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 				beans2[i] = getSlotBeanCount(i);
 			} else if (currSum == half) {
 				beans2[i] = getSlotBeanCount(i);
-				if(i < slots - 1) {
+				if (i < slots - 1) {
 					emptySlots = true;
 					start = i - 1;
 				}
@@ -198,7 +197,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 				beans2[i] = getSlotBeanCount(i);
 			} else if (currSum == half) {
 				beans2[i] = getSlotBeanCount(i);
-				if(i < slots - 1) {
+				if (i < slots - 1) {
 					emptySlots = true;
 					start = i + 1;
 				}
@@ -244,10 +243,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		if (beanCount != 0) {
 			beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
 		}
-		if (beanCount > 0)	//since we start at one bean at top, remaining beans is beanCount - 1
+		if (beanCount > 0){
 			remainingBeans = beanCount - 1;
-		else
+		} else {
 			remainingBeans = 0;
+		}
 	}
 
 	/**
@@ -261,7 +261,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		beansInSlots = new int[slots];
 
 		for (int j = 0; j < beanCount; j++)
+		{
 			allBeans[j].reset();
+		}
 
 		beanPositions = new Pair[beanCount];	//reset beanPositions data structure
 		beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
@@ -303,7 +305,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		}
 
 		if (remainingBeans > 0) { //if there are beans remaining...
-			beanPositions[i] = new Pair(0,0);
+			beanPositions[i] = new Pair(0, 0);
 			remainingBeans--;
 		}
 
