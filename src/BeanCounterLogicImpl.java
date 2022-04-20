@@ -28,6 +28,21 @@ import java.util.Random;
  * [Slot0]       [Slot1]       [Slot2]      [Slot3]
  */
 
+class Pair {
+
+	int x;
+	int y;
+
+	public Pair(int x, int y) {
+
+		this.x = x;
+		this.y = y;
+
+	}
+
+
+}
+
 public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 	int slots;
@@ -352,8 +367,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return the string representation of the machine
 	 */
 	@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-		value="VA_FORMAT_STRING_USES_NEWLINE", 
-		justification="I know we should be using %n instead of \n, but JPF for some reason does not like %n")
+		  value = "VA_FORMAT_STRING_USES_NEWLINE", 
+		  justification = "I know we should be using %n instead of \n, but JPF for some reason does not like %n")
 	public String toString() {
 		StringBuilder bld = new StringBuilder();
 		Formatter fmt = new Formatter(bld);
@@ -466,21 +481,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 
 
-
-
-}
-
-class Pair{
-
-	int x;
-	int y;
-
-	public Pair (int x, int y) {
-
-		this.x = x;
-		this.y = y;
-
-	}
 
 
 }
