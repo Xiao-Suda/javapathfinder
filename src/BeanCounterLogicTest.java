@@ -1,11 +1,12 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
 import java.lang.Math;
 import java.util.Random;
+import gov.nasa.jpf.vm.Verify;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import gov.nasa.jpf.vm.Verify;
 import org.junit.Test;
 
 /**
@@ -225,8 +226,7 @@ public class BeanCounterLogicTest {
 
 		if (beanCount % 2 == 0) {
 			half = (beanCount) / 2;
-		}
-		else {
+		} else {
 			half = (beanCount+1) / 2;
 		}
 
@@ -273,8 +273,7 @@ public class BeanCounterLogicTest {
 
 		if (beanCount % 2 == 0) {
 			half = (beanCount) / 2;
-		}
-		else {
+		} else {
 			half = (beanCount+1) / 2;
 		}
 
@@ -314,15 +313,19 @@ public class BeanCounterLogicTest {
 			}
 
 			logic.repeat();
-			while(logic.advanceStep()){}
+			while(logic.advanceStep()) {
+
+			}
 
 			int[] secondTime = new int[slotCount];
-			for (int i = 0; i < secondTime.length; i++)
+			for (int i = 0; i < secondTime.length; i++) {
 				secondTime[i] = logic.getSlotBeanCount(i);
+			}
 			
 
-			for (int i = 0; i < secondTime.length; i++)
+			for (int i = 0; i < secondTime.length; i++) {
 				assertEquals(failString, firstTime[i], secondTime[i]);
+			}
 		}
 
 		

@@ -59,9 +59,9 @@ public class BeanImpl implements Bean {
 		if (luck) {
 			skillLev = 0;
 		} else {
-			double skill_ave = (double) (slots-1) * 0.5;
-			double skill_sd = (double) Math.sqrt(slots * 0.5 * (1 - 0.5));
-			skillLev = (int) Math.round(rand.nextGaussian() * skill_sd + skill_ave);
+			double skillAve = (double) (slots - 1) * 0.5;
+			double skillSD = (double) Math.sqrt(slots * 0.5 * (1 - 0.5));
+			skillLev = (int) Math.round(rand.nextGaussian() * skillSD + skillAve);
 			tempSkillLev = skillLev;
 		}
 	}
@@ -102,18 +102,18 @@ public class BeanImpl implements Bean {
 		if (luck) {
 			//when the bean goes right, add 1 to the xposition
 			if (direction == 1) {
-				if(xpos < slots - 1 && ypos != slots - 2) //make sure x index does not go out of bounds
+				if (xpos < slots - 1 && ypos != slots - 2) {
 					xpos += 1;
-
+				}
 				ypos += 1;		
 			} else {
 				ypos += 1;
 			}
 		} else{
 			if (tempSkillLev > 0) {
-				if(xpos < slots - 1 && ypos != slots - 2) //make sure x index does not go out of bounds
+				if (xpos < slots - 1 && ypos != slots - 2){
 					xpos++;
-					
+				}
 				ypos += 1;
 				tempSkillLev--;
 			} else {

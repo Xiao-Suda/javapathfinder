@@ -76,13 +76,15 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public int getInFlightBeanXPos(int yPos) {
 
 	
-		for (int i = 0; i < beanPositions.length; i++){
+		for (int i = 0; i < beanPositions.length; i++) {
 
-			if (beanPositions[i] == null)
+			if (beanPositions[i] == null) {
 				break;
+			}
 			else {
-				if(beanPositions[i].y == yPos)	//if yPos matches, return xPos
+				if (beanPositions[i].y == yPos){
 					return allBeans[i].getXPos();
+				}
 			}
 		}
 	
@@ -127,10 +129,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		//get half the beans
 		int half = 0;
 		if (beanCount % 2 != 0) {
-			half = (beanCount - 1) /2;
-		}
-		else {
-			half = (beanCount) /2;
+			half = (beanCount - 1) / 2;
+		} else {
+			half = (beanCount) / 2;
 		}
 
 		int currSum = 0;
@@ -142,16 +143,14 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 			if (currSum < half) {
 				beans2[i] = getSlotBeanCount(i);
-			}
-			else if (currSum == half) {
+			} else if (currSum == half) {
 				beans2[i] = getSlotBeanCount(i);
 				if(i < slots - 1) {
 					emptySlots = true;
 					start = i - 1;
 				}
 				break;
-			}
-			else if (currSum > half) {
+			} else if (currSum > half) {
 				int remainder = currSum - half;
 				beans2[i] = getSlotBeanCount(i) - remainder;
 				if (i < slots - 1) {
@@ -182,11 +181,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		// TODO: Implement
 		//get half the beans
 		int half = 0;
-		if(beanCount % 2 != 0){
-			half = (beanCount - 1) /2;
-		}
-		else{
-			half = (beanCount) /2;
+		if (beanCount % 2 != 0) {
+			half = (beanCount - 1) / 2;
+		} else {
+			half = (beanCount) / 2;
 		}
 
 		int currSum = 0;
@@ -198,17 +196,14 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 			if (currSum < half) {
 				beans2[i] = getSlotBeanCount(i);
-			}
-			else if (currSum == half) {
+			} else if (currSum == half) {
 				beans2[i] = getSlotBeanCount(i);
-				if(i < slots - 1)
-				{
+				if(i < slots - 1) {
 					emptySlots = true;
 					start = i + 1;
 				}
 				break;
-			}
-			else if (currSum > half) {
+			} else if (currSum > half) {
 				int remainder = currSum - half;
 				beans2[i] = getSlotBeanCount(i) - remainder;
 				if (i < slots - 1) {
