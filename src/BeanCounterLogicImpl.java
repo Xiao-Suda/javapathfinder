@@ -202,7 +202,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 				beanPositions[i].x = allBeans[i].getXPos(); //change x position
 				beanPositions[i].y++; //increase y position
 				
-				if(beanPositions[i].y == slots){
+				if(beanPositions[i].y == slots-1){
 					beansInSlots[beanPositions[i].x]++;
 					beanPositions[i].y = -1; //if y = -1 --> bean is in slot
 				}
