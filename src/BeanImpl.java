@@ -87,6 +87,7 @@ public class BeanImpl implements Bean {
 	 */
 	public void reset() {
 		xpos = 0;
+		ypos = 0;
 		tempSkillLev = skillLev;
 	}
 	
