@@ -84,6 +84,9 @@ public class BeanCounterLogicTest {
 				+ ", beanCount=" + beanCount + ", isLucky=" + isLuck + "):";
 	}
 
+	/**
+	 * Tears down the test fixture.
+	 */
 	@AfterClass
 	public static void tearDown() {
 
@@ -109,13 +112,13 @@ public class BeanCounterLogicTest {
 
 		logic.reset(beans);
 
-		if(beanCount > 0){
+		if (beanCount > 0) {
 
-			assertEquals(failString, beanCount-1, logic.getRemainingBeanCount());
+			assertEquals(failString, beanCount - 1, logic.getRemainingBeanCount());
 			assertEquals(failString, 1, getInFlightBeanCount(logic, slotCount));
 			assertEquals(failString, 0, getInSlotsBeanCount(logic, slotCount));
 
-		}else if(beanCount == 0){
+		} else if (beanCount == 0) {
 
 			assertEquals(failString, 0, logic.getRemainingBeanCount());
 			assertEquals(failString, 0, getInFlightBeanCount(logic, slotCount));
@@ -160,7 +163,7 @@ public class BeanCounterLogicTest {
 	public void testAdvanceStepBeanCount() {
 		// TODO: Implement
 		logic.reset(beans);
-		while(logic.advanceStep()){
+		while (logic.advanceStep()) {
 			int sum = 0;
 			sum += logic.getRemainingBeanCount();
 			sum += getInFlightBeanCount(logic, slotCount);
