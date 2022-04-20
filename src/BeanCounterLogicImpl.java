@@ -106,9 +106,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public double getAverageSlotBeanCount() {
 		
-		double avg = 0;
+		double avg = 0.0;
 		for(int i = 0; i < slots; i++){
-			avg += beansInSlots[i] * i;
+			avg += (beansInSlots[i] * i);
 		}
 		avg = avg / beanCount;
 
