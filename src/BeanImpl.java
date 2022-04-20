@@ -38,6 +38,7 @@ public class BeanImpl implements Bean {
 	private int slots;
 	private boolean luck;
 	private int skillLev;
+	private int tempSkillLev;
 
 	/**
 	 * Constructor - creates a bean in either luck mode or skill mode.
@@ -86,6 +87,7 @@ public class BeanImpl implements Bean {
 	 */
 	public void reset() {
 		xpos = 0;
+		tempSkillLev = skillLev;
 	}
 	
 	/**
@@ -115,12 +117,12 @@ public class BeanImpl implements Bean {
 		}
 		//skill
 		else{
-			if(skillLev > 0){
+			if(tempSkillLev > 0){
 				if( xpos < slots-1 && ypos != slots-2 ) //make sure x index does not go out of bounds
 					xpos++;
 					
 				ypos += 1;
-				skillLev--;
+				tempSkillLev--;
 			}
 			else{
 				ypos += 1;
