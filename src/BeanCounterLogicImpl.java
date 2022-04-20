@@ -456,6 +456,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		System.out.println(logic.getSlotString());
 	}
 
+	/**
+	 * Counts all of the beans in the slots.
+	 * 
+	 * @return The total number of beans in the slots
+	 */
 	private int getTotalBeansInSlots() {
 
 		int total = 0;
@@ -471,6 +476,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		int x;
 		int y;
 	
+		/**
+		 * Keeps the x and y coordinates of each bean
+		 */
+
 		public Pair(int x, int y) {
 	
 			this.x = x;
