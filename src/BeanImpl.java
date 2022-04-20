@@ -75,6 +75,11 @@ public class BeanImpl implements Bean {
 		return xpos;
 	}
 
+	private int getYPos(){
+		return ypos;
+
+	}
+
 	/**
 	 * Resets the bean to its initial state. The X-coordinate should be initialized
 	 * to 0. 
@@ -90,7 +95,7 @@ public class BeanImpl implements Bean {
 	 */
 	public void choose() {
 		//if you're already in a slot, don't go through the choosing processs
-		if(xpos == slots - 1){
+		if(ypos == slots){
 			return;
 		}
 
@@ -100,17 +105,21 @@ public class BeanImpl implements Bean {
 		if(luck){
 			//when the bean goes right, add 1 to the xposition
 			if(direction == 1){
-				xpos += 1;	
+				xpos += 1;
+				ypos += 1;		
 			} else {
+				ypos += 1;
 			}
 		}
 		//skill
 		else{
 			if(skillLev > 0){
 				xpos++;
+				ypos += 1;
 				skillLev--;
 			}
 			else{
+				ypos += 1;
 			}
 		}
 

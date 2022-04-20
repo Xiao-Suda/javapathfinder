@@ -187,15 +187,16 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public boolean advanceStep() {
 		
-		if( getTotalBeansInSlots() == beanCount ) //if all beans placed
+		if( getTotalBeansInSlots() == beanCount ){ //if all beans placed
+			remainingBeans = 0;
 			return false;
-
+		}
 		int i;
 		for( i=0; i<beanPositions.length;i++){
 
 			if(beanPositions[i] == null)
 				break;
-			else if(beanPositions[i].y >= 0) { //if bean is not in slot
+			else if(beanPositions[i].y != -1) { //if bean is not in slot
 				
 				allBeans[i].choose(); //change x coordinate
 				beanPositions[i].x = allBeans[i].getXPos(); //change x position

@@ -187,9 +187,9 @@ public class BeanCounterLogicTest {
 		while(logic.advanceStep()){
 
 		}
-		assertEquals(0, logic.getRemainingBeanCount());
-		assertEquals(0, getInFlightBeanCount(logic, slotCount));
-		assertEquals(beanCount, getInSlotsBeanCount(logic, slotCount));
+		assertEquals(failString, 0, logic.getRemainingBeanCount());
+		assertEquals(failString, 0, getInFlightBeanCount(logic, slotCount));
+		assertEquals("InSLot count:", beanCount, getInSlotsBeanCount(logic, slotCount));
 	}
 	
 	/**
