@@ -28,7 +28,7 @@ import java.util.Random;
  * [Slot0]       [Slot1]       [Slot2]      [Slot3]
  */
 
-
+/*
 class Pair {
 
 	int x;
@@ -42,6 +42,7 @@ class Pair {
 	}
 
 }
+*/
 
 
 public class BeanCounterLogicImpl implements BeanCounterLogic {
