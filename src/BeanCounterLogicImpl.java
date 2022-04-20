@@ -123,6 +123,57 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void upperHalf() {
 		// TODO: Implement
+		int totalBeans = 0;
+		for(int i = 0; i < slots; i++){
+			totalBeans += getSlotBeanCount(i);
+		}
+
+		//get half the beans
+		int half = 0;
+		if(totalBeans % 2 == 1){
+			half = (totalBeans- 1) /2;
+		}
+		else{
+			half = (totalBeans) /2;
+		}
+
+		int currSum = 0;
+		int[] beans2 = new int[slots];
+		int start = 0;
+		boolean emptySlots = false;
+		for(int i = 0; i < slots; i++){
+			currSum += getSlotBeanCount(i);
+
+			if(currSum < half){
+				beans2[i] = getSlotBeanCount(i);
+			}
+			else if (currSum == half){
+				beans2[i] = getSlotBeanCount(i);
+				if(i < slots - 1)
+				{
+					emptySlots = true;
+					start = i + 1;
+				}
+				break;
+			}
+			else if (currSum > half){
+				int remainder = currSum - half;
+				beans2[i] = remainder;
+				if(i < slots - 1){
+					emptySlots = true;
+					start = i + 1;
+				}
+				break;
+			}
+		}
+
+		if(emptySlots = true){
+			for(int i = start; i < slots; i++){
+				beans2[i] = 0;
+			}
+		}
+
+		beansInSlots = beans2;
 	}
 
 	/**
