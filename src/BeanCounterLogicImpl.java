@@ -243,7 +243,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		if (beanCount != 0) {
 			beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
 		}
-		if (beanCount > 0){
+		if (beanCount > 0) {
 			remainingBeans = beanCount - 1;
 		} else {
 			remainingBeans = 0;
@@ -260,8 +260,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		remainingBeans = beanCount - 1;
 		beansInSlots = new int[slots];
 
-		for (int j = 0; j < beanCount; j++)
-		{
+		for (int j = 0; j < beanCount; j++) {
 			allBeans[j].reset();
 		}
 
@@ -289,9 +288,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		int i;
 		for (i = 0; i < beanPositions.length; i++) {
 
-			if (beanPositions[i] == null)
+			if (beanPositions[i] == null) {
 				break;
-			else if (beanPositions[i].y != -1) { //if bean is not in slot
+			} else if (beanPositions[i].y != -1) { //if bean is not in slot
 				
 				allBeans[i].choose(); //change x coordinate
 				beanPositions[i].x = allBeans[i].getXPos(); //change x position
@@ -352,9 +351,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * 
 	 * @return the string representation of the machine
 	 */
-	@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-		    value="VA_FORMAT_STRING_USES_NEWLINE", 
-		    justification="I know we should be using %n instead of \n, but JPF for some reason does not like %n")
 	public String toString() {
 		StringBuilder bld = new StringBuilder();
 		Formatter fmt = new Formatter(bld);
