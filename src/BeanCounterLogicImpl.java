@@ -72,6 +72,15 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return the x-coordinate of the in-flight bean; if no bean in y-coordinate, return NO_BEAN_IN_YPOS
 	 */
 	public int getInFlightBeanXPos(int yPos) {
+
+		int i = 0;
+		while( beanPositions[i] != null){ // if current bean has a position 
+
+			if(beanPositions[i].y == yPos)	//if yPos matches, return xPos
+				return allBeans[i].getXPos();
+
+			i++;
+		}
 		
 		return NO_BEAN_IN_YPOS;
 	}
