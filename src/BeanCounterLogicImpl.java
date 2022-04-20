@@ -149,7 +149,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 		if(beanCount != 0){
 			beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
-			allBeans[0].choose(); //change x coordinate
 		}
 		if(beanCount > 0)	//since we start at one bean at top, remaining beans is beanCount - 1
 			remainingBeans = beanCount - 1;
@@ -173,7 +172,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			allBeans[j].reset();
 
 		beanPositions = new Pair[beanCount];	//reset beanPositions data structure
-		allBeans[0].choose(); //change x coordinate
 		beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
 			
 			
@@ -205,7 +203,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 				beanPositions[i].x = allBeans[i].getXPos(); //change x position
 				beanPositions[i].y++; //increase y position
 				
-				if(beanPositions[i].y == slots-1){
+				if(beanPositions[i].y == slots){
 					beansInSlots[beanPositions[i].x]++;
 					beanPositions[i].y = -1; //if y = -1 --> bean is in slot
 				}
@@ -213,7 +211,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		}
 
 		if(remainingBeans > 0){ //if there are beans remaining...
-			allBeans[i].choose(); //change x coordinate
 			beanPositions[i] = new Pair(0,0);
 			remainingBeans--;
 		}

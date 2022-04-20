@@ -95,7 +95,7 @@ public class BeanImpl implements Bean {
 	 */
 	public void choose() {
 		//if you're already in a slot, don't go through the choosing processs
-		if(ypos == slots-1){
+		if(ypos == slots){
 			return;
 		}
 
