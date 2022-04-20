@@ -64,6 +64,7 @@ public class BeanImpl implements Bean {
 			double skill_ave = (double) (slots-1) * 0.5;
 			double skill_sd = (double) Math.sqrt(slots * 0.5 * (1 - 0.5));
 			skillLev = (int) Math.round(rand.nextGaussian() * skill_sd + skill_ave);
+			tempSkillLev = skillLev;
 		}
 	}
 	
