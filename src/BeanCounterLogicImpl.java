@@ -39,8 +39,7 @@ class Pair {
 		this.y = y;
 
 	}
-
-
+	
 }
 
 public class BeanCounterLogicImpl implements BeanCounterLogic {
@@ -368,7 +367,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
 		  value = "VA_FORMAT_STRING_USES_NEWLINE", 
-		  justification = "I know we should be using %n instead of \n, but JPF for some reason does not like %n")
+		  justification = "I know we should be using %n instead of \n," + 
+		  "but JPF for some reason does not like %n")
 	public String toString() {
 		StringBuilder bld = new StringBuilder();
 		Formatter fmt = new Formatter(bld);
