@@ -1,3 +1,5 @@
+import static org.mockito.Mockito.spy;
+
 import java.util.Formatter;
 import java.util.Random;
 
@@ -198,7 +200,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 				allBeans[i].choose(); //change x coordinate
 				beanPositions[i].x = allBeans[i].getXPos(); //change x position
 				beanPositions[i].y++; //increase y position
-		
+				
+				if(beanPositions[i].y == slots)
+					beansInSlots[beanPositions[i].x]++;
+
 			}
 		}
 
