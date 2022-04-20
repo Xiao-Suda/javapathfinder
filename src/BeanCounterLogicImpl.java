@@ -237,7 +237,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void reset(Bean[] beans) {
 
-		allBeans = beans;
+		allBeans = new Bean[beans.length];
+		for(int i = 0; i < beans.length; i++){
+			allBeans[i] = beans[i];
+		}
+
 		beanCount = beans.length;
 		beanPositions = new Pair[beanCount];
 		beansInSlots = new int[slots];

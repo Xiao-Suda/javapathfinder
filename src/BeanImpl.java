@@ -1,7 +1,8 @@
 import static org.mockito.Mockito.spy;
 
-import java.util.Random;
 import java.lang.Math;
+import java.util.Random;
+
 
 /**
  * Code by @author Wonsun Ahn
@@ -32,7 +33,6 @@ import java.lang.Math;
 public class BeanImpl implements Bean {
 	
 	// TODO: Add more member variables as needed
-	private int ypos;
 	private int xpos;
 	private Random r;
 	private int slots;
@@ -77,18 +77,12 @@ public class BeanImpl implements Bean {
 		return xpos;
 	}
 
-	private int getYPos(){
-		return ypos;
-
-	}
-
 	/**
 	 * Resets the bean to its initial state. The X-coordinate should be initialized
 	 * to 0. 
 	 */
 	public void reset() {
 		xpos = 0;
-		ypos = 0;
 		tempSkillLev = skillLev;
 	}
 	
@@ -99,7 +93,7 @@ public class BeanImpl implements Bean {
 	 */
 	public void choose() {
 		//if you're already in a slot, don't go through the choosing processs
-		if(ypos == slots-1){
+		if(xpos == slots-1){
 			return;
 		}
 
@@ -109,25 +103,18 @@ public class BeanImpl implements Bean {
 		if(luck){
 			//when the bean goes right, add 1 to the xposition
 			if(direction == 1){
-				if( xpos < slots-1 && ypos != slots-2 ) //make sure x index does not go out of bounds
+				if( xpos < slots - 1) //make sure x index does not go out of bounds
 					xpos += 1;
-
-				ypos += 1;		
-			} else {
-				ypos += 1;
 			}
+	
 		}
 		//skill
 		else{
 			if(tempSkillLev > 0){
-				if( xpos < slots-1 && ypos != slots-2 ) //make sure x index does not go out of bounds
+				if(xpos < slots-1) //make sure x index does not go out of bounds
 					xpos++;
 					
-				ypos += 1;
 				tempSkillLev--;
-			}
-			else{
-				ypos += 1;
 			}
 		}
 
