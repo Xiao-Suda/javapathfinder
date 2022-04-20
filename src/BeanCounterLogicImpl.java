@@ -73,15 +73,17 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getInFlightBeanXPos(int yPos) {
 
-		int i = 0;
-		while( beanPositions[i] != null){ // if current bean has a position 
+	
+		for(int i=0; i<beanPositions.length;i++){
 
-			if(beanPositions[i].y == yPos)	//if yPos matches, return xPos
-				return allBeans[i].getXPos();
-
-			i++;
+			if(beanPositions[i] == null)
+				break;
+			else{
+				if(beanPositions[i].y == yPos)	//if yPos matches, return xPos
+					return allBeans[i].getXPos();
+			}
 		}
-		
+	
 		return NO_BEAN_IN_YPOS;
 	}
 
@@ -186,20 +188,24 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		if( getTotalBeansInSlots() == beanCount ) //if all beans placed
 			return false;
 
-		int i = 0;
-		while( beanPositions[i] != null){ // if current bean is in flight (thus has a position)
+		int i;
+		for( i=0; i<beanPositions.length;i++){
 
-			allBeans[i].choose(); //change x coordinate
-			beanPositions[i].x = allBeans[i].getXPos(); //change x position
-			beanPositions[i].y++; //increase y position
-			i++;
+			if(beanPositions[i] == null)
+				break;
+			else{
+				
+				allBeans[i].choose(); //change x coordinate
+				beanPositions[i].x = allBeans[i].getXPos(); //change x position
+				beanPositions[i].y++; //increase y position
+		
+			}
 		}
 
 		if(remainingBeans > 0){ //if there are beans remaining...
 			beanPositions[i] = new Pair(0,0);
 			remainingBeans--;
 		}
-
 
 		return true;
 	}
