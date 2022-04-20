@@ -25,8 +25,6 @@ public interface Bean {
 	// Public interface of BeanCounterLogic
 	
 	public int getXPos();
-
-	public int getYPos();
 	
 	public void reset();
 	

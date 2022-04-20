@@ -27,12 +27,13 @@ import java.util.Random;
  */
 
 public class BeanCounterLogicImpl implements BeanCounterLogic {
-	// TODO: Add member methods and variables as needed
+
 	int slots;
 	int [] beansInSlots;
 	int beanCount;
 	int remainingBeans;
 	Bean [] allBeans;
+	Pair[] beanPositions;
 
 	/**
 	 * Constructor - creates the bean counter logic object that implements the core
@@ -71,13 +72,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return the x-coordinate of the in-flight bean; if no bean in y-coordinate, return NO_BEAN_IN_YPOS
 	 */
 	public int getInFlightBeanXPos(int yPos) {
-
-		for(int i = 0; i < allBeans.length; i++){	//search all beans
-
-			if( allBeans[i].getYPos() == yPos)	//if yPos matches, return xPos
-				return allBeans[i].getXPos();
-
-		}
 		
 		return NO_BEAN_IN_YPOS;
 	}
@@ -138,9 +132,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 		allBeans = beans;
 		beanCount = beans.length;
-		//since we start at one bean at top, remaining beans is beanCount - 1
+		beanPositions = new Pair[beanCount];
 
-		if(beanCount > 0)	
+		beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
+
+		if(beanCount > 0)	//since we start at one bean at top, remaining beans is beanCount - 1
 			remainingBeans = beanCount - 1;
 		else
 			remainingBeans = 0;
@@ -160,6 +156,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 		for(int j = 0; j < beanCount; j++)
 			allBeans[j].reset();
+
+		beanPositions = new Pair[beanCount];	//reset beanPositions data structure
+		beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
+			
 			
 
 	}
@@ -173,8 +173,26 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 *         means the machine is finished.
 	 */
 	public boolean advanceStep() {
-		// TODO: Implement
-		return false;
+		
+		if( getTotalBeansInSlots() == beanCount ) //if all beans placed
+			return false;
+
+		int i = 0;
+		while( beanPositions[i] != null){ // if current bean is in flight (thus has a position)
+
+			allBeans[i].choose(); //change x coordinate
+			beanPositions[i].x = allBeans[i].getXPos(); //change x position
+			beanPositions[i].y++; //increase y position
+			i++;
+		}
+
+		if(remainingBeans > 0){ //if there are beans remaining...
+			beanPositions[i] = new Pair(0,0);
+			remainingBeans--;
+		}
+
+
+		return true;
 	}
 	
 	/**
@@ -320,4 +338,34 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		System.out.println("Slot bean counts:");
 		System.out.println(logic.getSlotString());
 	}
+
+	private int getTotalBeansInSlots(){
+
+		int total = 0;
+		for(int i=0; i < slots; i++)
+			total += getSlotBeanCount(i);
+
+		return total;
+	}
+
+
+
+
+
 }
+
+class Pair{
+
+	int x;
+	int y;
+
+	public Pair(int x, int y){
+
+		this.x = x;
+		this.y = y;
+
+	}
+
+
+}
+
