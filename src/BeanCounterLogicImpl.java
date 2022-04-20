@@ -126,8 +126,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 		//get half the beans
 		int half = 0;
-		if(beanCount % 2 == 1){
-			half = (beanCount- 1) /2;
+		if(beanCount % 2 != 0){
+			half = (beanCount - 1) /2;
 		}
 		else{
 			half = (beanCount) /2;
@@ -163,7 +163,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			}
 		}
 
-		if(emptySlots = true){
+		if(emptySlots == true){
 			for(int i = start; i >= 0; i--){
 				beans2[i] = 0;
 			}
@@ -183,7 +183,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		// TODO: Implement
 		//get half the beans
 		int half = 0;
-		if(beanCount % 2 == 1){
+		if(beanCount % 2 != 0){
 			half = (beanCount - 1) /2;
 		}
 		else{
@@ -220,7 +220,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			}
 		}
 
-		if(emptySlots = true){
+		if(emptySlots == true){
 			for(int i = start; i < slots; i++){
 				beans2[i] = 0;
 			}
