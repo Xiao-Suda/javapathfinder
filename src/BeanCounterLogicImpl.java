@@ -124,6 +124,53 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public void upperHalf() {
 		// TODO: Implement
 
+		//get half the beans
+		int half = 0;
+		if(beanCount % 2 == 1){
+			half = (beanCount- 1) /2;
+		}
+		else{
+			half = (beanCount) /2;
+		}
+
+		int currSum = 0;
+		int[] beans2 = new int[slots];
+		int start = 0;
+		boolean emptySlots = false;
+		for(int i = slots - 1; i >= 0; i--){
+			currSum += getSlotBeanCount(i);
+
+			if(currSum < half){
+				beans2[i] = getSlotBeanCount(i);
+			}
+			else if (currSum == half){
+				beans2[i] = getSlotBeanCount(i);
+				if(i < slots - 1)
+				{
+					emptySlots = true;
+					start = i - 1;
+				}
+				break;
+			}
+			else if (currSum > half){
+				int remainder = currSum - half;
+				beans2[i] = getSlotBeanCount(i) - remainder;
+				if(i < slots - 1){
+					emptySlots = true;
+					start = i - 1;
+				}
+				break;
+			}
+		}
+
+		if(emptySlots = true){
+			for(int i = start; i >= 0; i--){
+				beans2[i] = 0;
+			}
+		}
+
+		beansInSlots = beans2;
+
 	}
 
 	/**
@@ -137,7 +184,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		//get half the beans
 		int half = 0;
 		if(beanCount % 2 == 1){
-			half = (beanCount- 1) /2;
+			half = (beanCount - 1) /2;
 		}
 		else{
 			half = (beanCount) /2;
@@ -164,7 +211,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			}
 			else if (currSum > half){
 				int remainder = currSum - half;
-				beans2[i] = remainder;
+				beans2[i] = getSlotBeanCount(i) - remainder;
 				if(i < slots - 1){
 					emptySlots = true;
 					start = i + 1;
