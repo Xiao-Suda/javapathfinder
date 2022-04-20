@@ -56,7 +56,7 @@ public class BeanImpl implements Bean {
 
 		//if it's luck is true, luck mode
 		//you don't have a skill level then
-		if(luck){
+		if (luck) {
 			skillLev = 0;
 		}
 		//otherwise it's skill mode

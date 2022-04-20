@@ -1,12 +1,12 @@
-import java.util.Random;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import gov.nasa.jpf.vm.Verify;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.lang.Math;
+import java.util.Random;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import gov.nasa.jpf.vm.Verify;
+import org.junit.Test;
 
 /**
  * Code by @author Wonsun Ahn
