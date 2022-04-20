@@ -123,18 +123,14 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void upperHalf() {
 		// TODO: Implement
-		int totalBeans = 0;
-		for(int i = 0; i < slots; i++){
-			totalBeans += getSlotBeanCount(i);
-		}
 
 		//get half the beans
 		int half = 0;
-		if(totalBeans % 2 == 1){
-			half = (totalBeans- 1) /2;
+		if(beanCount % 2 == 1){
+			half = (beanCount- 1) /2;
 		}
 		else{
-			half = (totalBeans) /2;
+			half = (beanCount) /2;
 		}
 
 		int currSum = 0;
