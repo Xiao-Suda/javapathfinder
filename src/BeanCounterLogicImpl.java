@@ -471,13 +471,13 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	}
 
 
-	public class Pair {
+	class Pair {
 
 		int x;
 		int y;
 	
 		/**
-		 * Keeps the x and y coordinates of each bean
+		 * Keeps the x and y coordinates of each bean.
 		 */
 
 		public Pair(int x, int y) {
