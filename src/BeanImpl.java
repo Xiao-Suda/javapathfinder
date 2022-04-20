@@ -58,10 +58,7 @@ public class BeanImpl implements Bean {
 		//you don't have a skill level then
 		if (luck) {
 			skillLev = 0;
-		}
-		//otherwise it's skill mode
-		//skill mode requires for the bean to be given a skill level
-		else{
+		} else {
 			double skill_ave = (double) (slots-1) * 0.5;
 			double skill_sd = (double) Math.sqrt(slots * 0.5 * (1 - 0.5));
 			skillLev = (int) Math.round(rand.nextGaussian() * skill_sd + skill_ave);
@@ -95,34 +92,31 @@ public class BeanImpl implements Bean {
 	 */
 	public void choose() {
 		//if you're already in a slot, don't go through the choosing processs
-		if(ypos == slots-1){
+		if (ypos == slots - 1) {
 			return;
 		}
 
 		int direction = r.nextInt(2);
 
 		//luck
-		if(luck){
+		if (luck) {
 			//when the bean goes right, add 1 to the xposition
-			if(direction == 1){
-				if( xpos < slots-1 && ypos != slots-2 ) //make sure x index does not go out of bounds
+			if (direction == 1) {
+				if(xpos < slots - 1 && ypos != slots - 2) //make sure x index does not go out of bounds
 					xpos += 1;
 
 				ypos += 1;		
 			} else {
 				ypos += 1;
 			}
-		}
-		//skill
-		else{
-			if(tempSkillLev > 0){
-				if( xpos < slots-1 && ypos != slots-2 ) //make sure x index does not go out of bounds
+		} else{
+			if (tempSkillLev > 0) {
+				if(xpos < slots - 1 && ypos != slots - 2) //make sure x index does not go out of bounds
 					xpos++;
 					
 				ypos += 1;
 				tempSkillLev--;
-			}
-			else{
+			} else {
 				ypos += 1;
 			}
 		}

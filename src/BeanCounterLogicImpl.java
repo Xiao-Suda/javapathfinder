@@ -76,11 +76,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public int getInFlightBeanXPos(int yPos) {
 
 	
-		for(int i=0; i<beanPositions.length;i++){
+		for (int i = 0; i < beanPositions.length; i++){
 
-			if(beanPositions[i] == null)
+			if (beanPositions[i] == null)
 				break;
-			else{
+			else {
 				if(beanPositions[i].y == yPos)	//if yPos matches, return xPos
 					return allBeans[i].getXPos();
 			}
@@ -107,7 +107,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public double getAverageSlotBeanCount() {
 		
 		double avg = 0;
-		for(int i = 0; i < slots; i++){
+		for (int i = 0; i < slots; i++) {
 			avg += beansInSlots[i] * i;
 		}
 		avg = avg / beanCount;
@@ -126,10 +126,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 		//get half the beans
 		int half = 0;
-		if(beanCount % 2 != 0){
+		if (beanCount % 2 != 0) {
 			half = (beanCount - 1) /2;
 		}
-		else{
+		else {
 			half = (beanCount) /2;
 		}
 
@@ -137,25 +137,24 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		int[] beans2 = new int[slots];
 		int start = 0;
 		boolean emptySlots = false;
-		for(int i = slots - 1; i >= 0; i--){
+		for (int i = slots - 1; i >= 0; i--) {
 			currSum += getSlotBeanCount(i);
 
-			if(currSum < half){
+			if (currSum < half) {
 				beans2[i] = getSlotBeanCount(i);
 			}
-			else if (currSum == half){
+			else if (currSum == half) {
 				beans2[i] = getSlotBeanCount(i);
-				if(i < slots - 1)
-				{
+				if(i < slots - 1) {
 					emptySlots = true;
 					start = i - 1;
 				}
 				break;
 			}
-			else if (currSum > half){
+			else if (currSum > half) {
 				int remainder = currSum - half;
 				beans2[i] = getSlotBeanCount(i) - remainder;
-				if(i < slots - 1){
+				if (i < slots - 1) {
 					emptySlots = true;
 					start = i - 1;
 				}
@@ -163,8 +162,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			}
 		}
 
-		if(emptySlots == true){
-			for(int i = start; i >= 0; i--){
+		if (emptySlots == true) {
+			for (int i = start; i >= 0; i--) {
 				beans2[i] = 0;
 			}
 		}
@@ -194,13 +193,13 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		int[] beans2 = new int[slots];
 		int start = 0;
 		boolean emptySlots = false;
-		for(int i = 0; i < slots; i++){
+		for (int i = 0; i < slots; i++) {
 			currSum += getSlotBeanCount(i);
 
-			if(currSum < half){
+			if (currSum < half) {
 				beans2[i] = getSlotBeanCount(i);
 			}
-			else if (currSum == half){
+			else if (currSum == half) {
 				beans2[i] = getSlotBeanCount(i);
 				if(i < slots - 1)
 				{
@@ -209,10 +208,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 				}
 				break;
 			}
-			else if (currSum > half){
+			else if (currSum > half) {
 				int remainder = currSum - half;
 				beans2[i] = getSlotBeanCount(i) - remainder;
-				if(i < slots - 1){
+				if (i < slots - 1) {
 					emptySlots = true;
 					start = i + 1;
 				}
@@ -220,8 +219,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			}
 		}
 
-		if(emptySlots == true){
-			for(int i = start; i < slots; i++){
+		if (emptySlots == true) {
+			for (int i = start; i < slots; i++) {
 				beans2[i] = 0;
 			}
 		}
@@ -238,7 +237,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public void reset(Bean[] beans) {
 
 		allBeans = new Bean[beans.length];
-		for(int i = 0; i < beans.length; i++){
+		for (int i = 0; i < beans.length; i++) {
 			allBeans[i] = beans[i];
 		}
 
@@ -247,10 +246,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		beansInSlots = new int[slots];
 		
 
-		if(beanCount != 0){
+		if (beanCount != 0) {
 			beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
 		}
-		if(beanCount > 0)	//since we start at one bean at top, remaining beans is beanCount - 1
+		if (beanCount > 0)	//since we start at one bean at top, remaining beans is beanCount - 1
 			remainingBeans = beanCount - 1;
 		else
 			remainingBeans = 0;
@@ -266,7 +265,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		remainingBeans = beanCount - 1;
 		beansInSlots = new int[slots];
 
-		for(int j = 0; j < beanCount; j++)
+		for (int j = 0; j < beanCount; j++)
 			allBeans[j].reset();
 
 		beanPositions = new Pair[beanCount];	//reset beanPositions data structure
@@ -286,29 +285,29 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public boolean advanceStep() {
 		
-		if( getTotalBeansInSlots() == beanCount ){ //if all beans placed
+		if (getTotalBeansInSlots() == beanCount) { //if all beans placed
 			remainingBeans = 0;
 			return false;
 		}
 		int i;
-		for( i=0; i<beanPositions.length;i++){
+		for (i = 0; i < beanPositions.length; i++) {
 
-			if(beanPositions[i] == null)
+			if (beanPositions[i] == null)
 				break;
-			else if(beanPositions[i].y != -1) { //if bean is not in slot
+			else if (beanPositions[i].y != -1) { //if bean is not in slot
 				
 				allBeans[i].choose(); //change x coordinate
 				beanPositions[i].x = allBeans[i].getXPos(); //change x position
 				beanPositions[i].y++; //increase y position
 				
-				if(beanPositions[i].y == slots){
+				if (beanPositions[i].y == slots) {
 					beansInSlots[beanPositions[i].x]++;
 					beanPositions[i].y = -1; //if y = -1 --> bean is in slot
 				}
 			}
 		}
 
-		if(remainingBeans > 0){ //if there are beans remaining...
+		if (remainingBeans > 0) { //if there are beans remaining...
 			beanPositions[i] = new Pair(0,0);
 			remainingBeans--;
 		}
@@ -463,7 +462,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	private int getTotalBeansInSlots(){
 
 		int total = 0;
-		for(int i=0; i < slots; i++)
+		for(int i = 0; i < slots; i++)
 			total += getSlotBeanCount(i);
 
 		return total;
@@ -480,7 +479,7 @@ class Pair{
 	int x;
 	int y;
 
-	public Pair(int x, int y){
+	public Pair (int x, int y) {
 
 		this.x = x;
 		this.y = y;
