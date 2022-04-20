@@ -34,6 +34,7 @@ public class BeanImpl implements Bean {
 	
 	// TODO: Add more member variables as needed
 	private int xpos;
+	private int ypos;
 	private Random r;
 	private int slots;
 	private boolean luck;
@@ -83,6 +84,7 @@ public class BeanImpl implements Bean {
 	 */
 	public void reset() {
 		xpos = 0;
+		ypos = 0;
 		tempSkillLev = skillLev;
 	}
 	
@@ -93,7 +95,7 @@ public class BeanImpl implements Bean {
 	 */
 	public void choose() {
 		//if you're already in a slot, don't go through the choosing processs
-		if(xpos == slots-1){
+		if(ypos == slots-1){
 			return;
 		}
 
@@ -103,18 +105,25 @@ public class BeanImpl implements Bean {
 		if(luck){
 			//when the bean goes right, add 1 to the xposition
 			if(direction == 1){
-				if( xpos < slots - 1) //make sure x index does not go out of bounds
+				if( xpos < slots-1 && ypos != slots-2 ) //make sure x index does not go out of bounds
 					xpos += 1;
+
+				ypos += 1;		
+			} else {
+				ypos += 1;
 			}
-	
 		}
 		//skill
 		else{
 			if(tempSkillLev > 0){
-				if(xpos < slots-1) //make sure x index does not go out of bounds
+				if( xpos < slots-1 && ypos != slots-2 ) //make sure x index does not go out of bounds
 					xpos++;
 					
+				ypos += 1;
 				tempSkillLev--;
+			}
+			else{
+				ypos += 1;
 			}
 		}
 
