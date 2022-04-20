@@ -146,6 +146,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		allBeans = beans;
 		beanCount = beans.length;
 		beanPositions = new Pair[beanCount];
+		beansInSlots = new int[slots];
+		
 
 		if(beanCount != 0){
 			beanPositions[0] = new Pair(0, 0); // first bean is at position (0,0)
@@ -164,9 +166,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public void repeat() {
 		
 		remainingBeans = beanCount - 1;
-
-		for(int i = 0; i < slots; i++)
-			beansInSlots[i] = 0;
+		beansInSlots = new int[slots];
 
 		for(int j = 0; j < beanCount; j++)
 			allBeans[j].reset();
