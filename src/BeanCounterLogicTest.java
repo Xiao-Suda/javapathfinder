@@ -220,8 +220,6 @@ public class BeanCounterLogicTest {
 
 		}
 
-		logic.lowerHalf();
-
 		int half = 0;
 
 		if (beanCount % 2 == 0) {
@@ -232,14 +230,52 @@ public class BeanCounterLogicTest {
 
 		assertEquals(0, logic.getRemainingBeanCount());
 		assertEquals(0, getInFlightBeanCount(logic, slotCount));
-		assertEquals(half, getInSlotsBeanCount(logic, slotCount));
+		assertEquals(beanCount, getInSlotsBeanCount(logic, slotCount));
 
-		int sum = 0;
+		int[] expected = new int[slotCount];
+
+		int currSum = 0;
+		int start = 0;
+		boolean emptySlots = false;
 		for (int i = 0; i < slotCount; i++) {
-			sum += logic.getSlotBeanCount(i);
+			currSum += logic.getSlotBeanCount(i);
+
+			if (currSum < half) {
+				expected[i] = logic.getSlotBeanCount(i);
+			} else if (currSum == half) {
+				expected[i] = logic.getSlotBeanCount(i);
+				if (i < slotCount - 1) {
+					emptySlots = true;
+					start = i + 1;
+				}
+				break;
+			} else if (currSum > half) {
+				int remainder = currSum - half;
+				expected[i] = logic.getSlotBeanCount(i) - remainder;
+				if (i < slotCount - 1) {
+					emptySlots = true;
+					start = i + 1;
+				}
+				break;
+			}
 		}
 
-		assertEquals(half, sum);
+		if (emptySlots == true) {
+			for (int i = start; i < slotCount; i++) {
+				expected[i] = 0;
+			}
+		}
+
+		logic.lowerHalf();
+
+
+		int[] observed = new int[slotCount];
+		for (int i = 0; i < slotCount; i++) {
+			observed[i] = logic.getSlotBeanCount(i);
+		}
+		for (int i = 0; i < slotCount; i++) {
+			assertEquals(expected[i], observed[i]);
+		}
 
 	}
 	
@@ -267,8 +303,6 @@ public class BeanCounterLogicTest {
 
 		}
 
-		logic.upperHalf();
-
 		int half = 0;
 
 		if (beanCount % 2 == 0) {
@@ -279,14 +313,50 @@ public class BeanCounterLogicTest {
 
 		assertEquals(0, logic.getRemainingBeanCount());
 		assertEquals(0, getInFlightBeanCount(logic, slotCount));
-		assertEquals(half, getInSlotsBeanCount(logic, slotCount));
+		assertEquals(beanCount, getInSlotsBeanCount(logic, slotCount));
 
-		int sum = 0;
-		for (int i = 0; i < slotCount; i++) {
-			sum += logic.getSlotBeanCount(i);
+		int[] expected = new int[slotCount];
+		int currSum = 0;
+		int start = 0;
+		boolean emptySlots = false;
+		for (int i = slotCount - 1; i >= 0; i--) {
+			currSum += logic.getSlotBeanCount(i);
+
+			if (currSum < half) {
+				expected[i] = logic.getSlotBeanCount(i);
+			} else if (currSum == half) {
+				expected[i] = logic.getSlotBeanCount(i);
+				if (i < slotCount - 1) {
+					emptySlots = true;
+					start = i - 1;
+				}
+				break;
+			} else if (currSum > half) {
+				int remainder = currSum - half;
+				expected[i] = logic.getSlotBeanCount(i) - remainder;
+				if (i < slotCount - 1) {
+					emptySlots = true;
+					start = i - 1;
+				}
+				break;
+			}
 		}
 
-		assertEquals(half, sum);
+		if (emptySlots == true) {
+			for (int i = start; i >= 0; i--) {
+				expected[i] = 0;
+			}
+		}
+
+		logic.upperHalf();
+
+		int[] observed = new int[slotCount];
+		for (int i = 0; i < slotCount; i++) {
+			observed[i] = logic.getSlotBeanCount(i);
+		}
+		for (int i = 0; i < slotCount; i++) {
+			assertEquals(expected[i], observed[i]);
+		}
 	}
 	
 	/**
