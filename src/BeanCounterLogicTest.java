@@ -222,7 +222,7 @@ public class BeanCounterLogicTest {
 
 		int half = 0;
 
-		if (beanCount % 2 == 0) {
+		if (beanCount % 2 == 0) { //is even
 			half = (beanCount) / 2;
 		} else {
 			half = (beanCount + 1) / 2;
@@ -400,4 +400,24 @@ public class BeanCounterLogicTest {
 
 		
 	}
+
+	@Test
+	public void testRemainingBeanCount(){
+
+		int starting_count = beanCount-1;
+
+		logic.advanceStep();
+
+		assertEquals(failString, starting_count-2, logic.getRemainingBeanCount()); //test after one advanceStep()
+		
+		while (logic.advanceStep()){
+			starting_count--;
+			assertEquals(failString, starting_count, logic.getRemainingBeanCount());
+		}
+
+	}
+
+
+
+
 }
