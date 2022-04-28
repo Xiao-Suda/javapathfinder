@@ -75,7 +75,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getInFlightBeanXPos(int yPos) {
 
-	a
 		for (int i = 0; i < beanPositions.length; i++) {
 
 			if (beanPositions[i] == null) {
