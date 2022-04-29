@@ -407,9 +407,9 @@ public class BeanCounterLogicTest {
 		int startingCount = beanCount - 1;
 
 		logic.advanceStep();
-
+		int remainingCount = logic.getRemainingBeanCount();
 		assertEquals(failString, startingCount - 2, 
-		logic.getRemainingBeanCount()); //test after one advanceStep()
+									remainingCount); //test after one advanceStep()
 		
 		while (logic.advanceStep()) {
 			startingCount--;
